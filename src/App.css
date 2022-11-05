@@ -3,48 +3,76 @@
 
 } */
 
-section{
-  background: #000;
-  height: 30vh;
+section {
+  background-color: #04141a;
+  background-image: url("https://chooky-inu.com/wp-content/uploads/2022/10/Chooky-Home-2.png");
+  background-position: bottom center;
+  background-repeat: no-repeat !important;
+  background-size: 71% auto;
 }
-.image-dog{
+.image-dog {
   text-align: center;
   display: block;
   margin: auto;
-  
 }
-.bg{
-  /* position: relative; */
+img.imgwidth {
+  max-width: 100px;
+  cursor: pointer;
+}
+.background {
+  background-color: transparent;
+  background-image: linear-gradient(0deg, #263a4e 0%, #0e0a0b 73%);
+  opacity: 0.52;
+  transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+  min-height: 100vh;
+}
+/* .bg {
+   position: relative; 
   background-size: 71% auto;
   background-position: bottom center;
   display: block;
-    margin: auto;
-    position: absolute;
+  margin: auto;
+  position: absolute;
+} */
+
+/* .background-image {
+  position: absolute;
+  z-index: -1;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+} */
+
+img.background {
+  object-fit: cover;
+  width: 100%;
+  height: 100vh;
 }
-.main-image{
-  background-image: linear-gradient(0deg, #263A4E 0%, #0E0A0B 73%);
-  opacity: 0.52
+.main-image {
+  background-image: linear-gradient(0deg, #263a4e 0%, #0e0a0b 73%);
+  opacity: 0.52;
 }
-.element-content{
+.element-content {
   min-height: 100vh;
 }
-.card1{
+.card1 {
   /* position: absolute; */
-  border: 2px solid #68FCCC ;
+  border: 2px solid #68fccc;
   background: #647271;
   height: 150px;
   width: 50px;
   border-radius: 10px;
   padding: 50px;
 }
-.area{
+.area {
   text-align: center;
 }
-.claim-button{
+.claim-button {
   text-align: center;
-
 }
-.claim-bu{
+.claim-bu {
   /* border: 4px solid #68FCCC !important;
  background: rgba(0, 0, 0, 0.459);
   box-shadow: 1px 1px 20px 14px #68FCCC; */
@@ -52,27 +80,25 @@ section{
   font-family: "Montserrat", Sans-serif;
   font-size: 17px;
   font-weight: 900;
-  background-color: #0C180EC7;
+  background-color: #0c180ec7;
   border-style: solid;
   border-width: 2px 2px 2px 2px;
-  border-color: #64FCCC;
+  border-color: #64fccc;
   border-radius: 7px 7px 7px 7px;
   box-shadow: 2px 2px 19px 0px #64fccc;
   color: #fff;
   padding: 15px 20px;
-
 }
-.chooky-button{
+.chooky-button {
   font-family: "Montserrat", Sans-serif;
   font-size: 17px;
   font-weight: 900;
-  background-color: #0C180EC7;
+  background-color: #0c180ec7;
   border-style: solid;
   border-width: 2px 2px 2px 2px;
-  border-color: #64FCCC;
+  border-color: #64fccc;
   border-radius: 7px 7px 7px 7px;
   box-shadow: 2px 2px 19px 0px #64fccc;
   color: #fff;
   /* padding: 15px 20px; */
-
 }
