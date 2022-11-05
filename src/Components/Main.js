@@ -3,14 +3,16 @@ import Dogimage from "./Images/chooky-wink1.gif";
 import bg from "./Images/Chooky-Home-2.png";
 import { BsTelegram } from 'react-icons/bs';
 import {BsTwitter} from 'react-icons/bs';
+import Navbar from "./Navbar";
 
 export default function Main() {
   return (
     <section>
       <div className="background">
+      <Navbar/>
         <div className="container">
           <div>
-            <div className="row">
+            <div className="row section-top">
               <div className="col-lg-3 col-md-3 col-sm-6 col-12  ">
               <div className=" card1">
                 <div className="area">

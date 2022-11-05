@@ -15,7 +15,7 @@ export default function Navbar() {
   const handleShow = () => setShow(true);
   return (
     <div>
-      <nav class="navbar navbar-expand-lg bg-black">
+      <nav class="navbar navbar-expand-lg bg-tranparent">
         <div class="container-fluid">
           <a class="navbar-brand" href="/"></a>
           <button

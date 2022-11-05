@@ -112,6 +112,9 @@ h3  {
 span{
   color: #fff;
 }
+.row.section-top{
+  margin-top: 80px;
+}
 
 
 /* FOOTER */
