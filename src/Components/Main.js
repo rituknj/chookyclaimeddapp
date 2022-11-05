@@ -174,7 +174,7 @@ export default function Main() {
               }}
             />
             <BsTwitter
-              style={{ color: "#fff", fontSize: "50px", marginBottom: "50px" }}
+              style={{ color: "#fff", fontSize: "50px", marginBottom: "0px" }}
             />
           </div>
         </div>
