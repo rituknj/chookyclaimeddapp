@@ -291,7 +291,7 @@ export const Staking = [
   },
 ];
 
-export const tokenaddress = "0x63672C634e9894CFDC895078b93ECDf5C8A983Ea";
+export const tokenaddress = "0x5bB38002CdA2b6F990b8F085Ac75a255DCBadABf";
 
 export const token = [
   {
