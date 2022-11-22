@@ -1,15 +1,82 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Dogimage from "./Images/chooky-wink1.gif";
 import bg from "./Images/Chooky-Home-2.png";
 import { BsTelegram } from "react-icons/bs";
 import { BsTwitter } from "react-icons/bs";
+import toast, { Toaster } from 'react-hot-toast'
 import Navbar from "./Navbar";
+import { Tier1holders, Tier2holders, Tier3holders, Tier4holders, TierBalance, tokenBalance, Claimroyalty, lastTimeClaim, ChookyholderDetails, GetChainId } from "./../Connection_Web3/Wallet"
 
-export default function Main() {
+const notify = (msg) => toast.success(msg)
+
+export default function Main({account, Dissconnect, Metamask, WalletC}) {
+  
+  const [holder1, setHolder1] = useState(0)
+  const [holder2, setHolder2] = useState(0)
+  const [holder3, setHolder3] = useState(0)
+  const [holder4, setHolder4] = useState(0)
+  const [tier1, setTier1] = useState(0)
+  const [tier2, setTier2] = useState(0)
+  const [tier3, setTier3] = useState(0)
+  const [tier4, setTier4] = useState(0)
+  const [balance, setBalance] = useState(0)
+  const [lasttime, setLastTime] = useState(0)
+  const [totalclaim, setTotalClaim] = useState(false)
+  const [tier, setTier] = useState(0)
+
+  useEffect(()=>{
+    const init =async()=>{
+      const id = await GetChainId();
+      console.log(id,"ID is")
+      if (Number(id) != 5) {
+        return;
+      }
+
+      console.log("Running");
+      const one = await Tier1holders()
+      setHolder1(one)
+      
+      const two = await Tier2holders()
+      setHolder2(two) 
+
+      const three = await Tier3holders();
+      setHolder3(three)
+
+      const four = await Tier4holders();
+      setHolder4(four)
+
+      const tierbal = await TierBalance();
+      setTier4(tierbal[3])
+      setTier3(tierbal[2])
+      setTier2(tierbal[1])
+      setTier1(tierbal[0])
+
+      const bal = await tokenBalance()
+      setBalance(bal)
+      
+      // const last = await lastTimeClaim()
+      // setLastTime(last)
+
+      const userdata = await ChookyholderDetails();
+      setLastTime(userdata[4])
+      setTotalClaim(userdata[3]/10**18)
+      setTier(userdata[1])
+    }
+    
+    init();
+  },[account])
+
+  const claim = async() =>{
+    const data = await Claimroyalty();
+    if(data.status){
+      notify("Cliam successfully")
+    }
+  }
+
   return (
     <section>
       <div className="background">
-        <Navbar />
+        <Navbar  account={account} Dissconnect={Dissconnect} Metamask={Metamask} WalletC={WalletC}/>
         <div className="container">
           <div>
             <div className="row section-top">
@@ -17,10 +84,10 @@ export default function Main() {
                 <div className=" card1">
                   <div className="area">
                     <h3>Tier I Pool</h3>
-                    <span> 1 ETH </span>
+                    <span> {tier1} ETH </span>
                     <br />
                     <br />
-                    <span>Holders: 1000</span>
+                    <span>Holders: {holder1}</span>
                   </div>
                 </div>
               </div>
@@ -28,10 +95,10 @@ export default function Main() {
                 <div className=" card1">
                   <div className="area ">
                     <h3>Tier II Pool</h3>
-                    <span> 5 ETH</span>
+                    <span> {tier2} ETH</span>
                     <br />
                     <br />
-                    <span>Holders: 1000</span>
+                    <span>Holders: {holder2}</span>
                   </div>
                 </div>
               </div>
@@ -39,10 +106,10 @@ export default function Main() {
                 <div className=" card1">
                   <div className="area ">
                     <h3>Tier III Pool</h3>
-                    <span> 15 ETH</span>
+                    <span> {tier3} ETH</span>
                     <br />
                     <br />
-                    <span>Holders: 1000</span>
+                    <span>Holders: {holder3}</span>
                   </div>
                 </div>
               </div>
@@ -50,10 +117,10 @@ export default function Main() {
                 <div className=" card1">
                   <div className="area ">
                     <h3>Tier IV Pool</h3>
-                    <span> 11 ETH</span>
+                    <span> {tier4} ETH</span>
                     <br />
                     <br />
-                    <span>Holders: 1000</span>
+                    <span>Holders: {holder4}</span>
                   </div>
                 </div>
               </div>
@@ -70,7 +137,7 @@ export default function Main() {
               <div className="col-lg-8 col-md-6 col-sm-6 col-12">
                 {" "}
                 <div className="main-content d-flex">
-                  <p style={{ color: "#fff", fontSize: "24px" }}>1,000,000</p>
+                  <p style={{ color: "#fff", fontSize: "24px" }}>{balance}</p>
                   <span
                     style={{
                       color: "#fff",
@@ -94,7 +161,7 @@ export default function Main() {
               <div className="col-lg-8 col-md-6 col-sm-6 col-12">
                 {" "}
                 <div className="main-content">
-                  <p style={{ color: "#fff", fontSize: "24px" }}>Tier II</p>
+                  <p style={{ color: "#fff", fontSize: "24px" }}>{tier}</p>
                 </div>
               </div>
             </div>
@@ -110,7 +177,7 @@ export default function Main() {
               <div className="col-lg-8 col-md-6 col-sm-6 col-12">
                 {" "}
                 <div className="main-content">
-                  <p style={{ color: "#fff", fontSize: "24px" }}>1</p>
+                  <p style={{ color: "#fff", fontSize: "24px" }}>{lasttime == 0 ? "00/00/0000, 00:00:00" : new Date(lasttime).toLocaleString()}</p>
                 </div>
               </div>
             </div>
@@ -126,7 +193,7 @@ export default function Main() {
               <div className="col-lg-8   col-md-6 col-sm-6 col-12">
                 {" "}
                 <div className="main-content">
-                  <p style={{ color: "#fff", fontSize: "24px" }}> +14</p>
+                  <p style={{ color: "#fff", fontSize: "24px" }}>{lasttime == 0 ? "00/00/0000, 00:00:00" : new Date(lasttime + 1209600).toLocaleString()}</p>
                 </div>
               </div>
             </div>
@@ -142,13 +209,13 @@ export default function Main() {
               <div className="col-lg-8 col-md-6 col-sm-6 col-12">
                 {" "}
                 <div className="main-content">
-                  <p style={{ color: "#fff", fontSize: "24px" }}> 2 ETH</p>
+                  <p style={{ color: "#fff", fontSize: "24px" }}>{Number(totalclaim).toFixed(4)} ETH</p>
                 </div>
               </div>
             </div>
             <div className="my-5">
               <div className="claim-button">
-                <button className="claim-bu"> CLAIM</button>
+                <button className="claim-bu" onClick={()=>claim()}> CLAIM</button>
               </div>
             </div>
           </div>
@@ -179,6 +246,7 @@ export default function Main() {
           </div>
         </div>
       </div>
+      <Toaster/>
     </section>
   );
 }

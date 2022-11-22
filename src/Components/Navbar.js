@@ -8,11 +8,17 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import metamask from "./Images/meta.png";
 
-export default function Navbar() {
+export default function Navbar({account, Dissconnect, Metamask, WalletC}) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const sliceadd = (address) => {
+    const first = address.slice(0, 4)
+    const second = address.slice(38)
+    return first + '...' + second
+  }
   return (
     <div>
       <nav class="navbar navbar-expand-lg bg-tranparent">
@@ -43,8 +49,15 @@ export default function Navbar() {
               </div>
             </ul>
             <form class="d-flex mx-4" role="search">
-              <Button variant="primary" onClick={handleShow} className="btn">
-                Connect Wallet
+              <Button variant="primary" onClick={()=>{
+                if(account){
+                  Dissconnect()
+                  return;
+                }
+                handleShow()
+                
+                }} className="btn">
+                {account ? sliceadd(account) : "Connect Wallet"}
               </Button>
             </form>
 
@@ -77,13 +90,17 @@ export default function Navbar() {
                   src={metamask}
                   alt=""
                   className="imgwidth"
-                  onClick={() => setShow(false)}
+                  onClick={() => {
+                    Metamask();
+                    setShow(false)}}
                 />
                 <img
                   src={walletconnect}
                   alt=""
                   className="imgwidth"
-                  onClick={() => setShow(false)}
+                  onClick={() => {
+                    WalletC()
+                    setShow(false)}}
                 />
               </div>
             </Modal.Body>
